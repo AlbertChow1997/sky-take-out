@@ -101,4 +101,12 @@ public class EmployeeController {
         return Result.success();
     }
 
+    @GetMapping("/{id}")
+    @ApiOperation(value = "query employee by id")
+    public Result<Employee> getById(@PathVariable Long id){
+        log.info("Query employee by id: {}", id);
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
 }
