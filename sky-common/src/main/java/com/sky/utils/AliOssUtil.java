@@ -27,6 +27,8 @@ public class AliOssUtil {
      * @return
      */
     public String upload(byte[] bytes, String objectName) {
+        log.info("当前OSS endpoint: {}", endpoint);
+        log.info("当前OSS bucketName: {}", bucketName);
 
         // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
