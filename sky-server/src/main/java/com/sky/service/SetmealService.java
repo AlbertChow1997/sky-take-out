@@ -1,5 +1,6 @@
 package com.sky.service;
 
+import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.result.PageResult;
@@ -7,5 +8,5 @@ import com.sky.result.PageResult;
 public interface SetmealService {
     PageResult pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
 
-    void add(Setmeal setmeal);
+    void saveWithDishes(SetmealDTO setmealDTO);
 }

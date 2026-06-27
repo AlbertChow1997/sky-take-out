@@ -1,6 +1,7 @@
 package com.sky.controller.admin;
 
 
+import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.Setmeal;
 import com.sky.result.PageResult;
@@ -32,11 +33,11 @@ public class SetmealController {
         return Result.success(pageResult);
     }
 
-    @PostMapping("/add")
-    @ApiOperation("Setmeal add")
-    public Result add(@RequestBody Setmeal setmeal) {
-        log.info("Add Setmeal: {}", setmeal);
-        setmealService.add(setmeal);
+    @PostMapping
+    @ApiOperation("Add setmeal")
+    public Result save(@RequestBody SetmealDTO setmealDTO) {
+        log.info("Add Setmeal: {}", setmealDTO);
+        setmealService.saveWithDishes(setmealDTO);
         return Result.success();
     }
 
