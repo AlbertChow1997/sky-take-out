@@ -93,6 +93,23 @@ public class SetmealServiceImpl implements SetmealService {
 
     @Override
     public void update(SetmealDTO setmealDTO) {
+        Setmeal setmeal = new Setmeal();
+        BeanUtils.copyProperties(setmealDTO, setmeal);
+
+        // Update the setmeal table
+        setmealMapper.update(setmeal);
+
+        // Delete the setmeal_dish relationships
+        setmealDishMapper.deleteBySetmealId(setmealDTO.getId());
+
+        // Insert data to the setmeal_dish table
+        List<SetmealDish> setmealDishes = setmealDTO.getSetmealDishes();
+        if (setmealDishes != null && setmealDishes.size() > 0) {
+            setmealDishes.forEach(setmealDish -> {
+                setmealDish.setSetmealId(setmealDTO.getId());
+            });
+            setmealDishMapper.insertBatch(setmealDishes);
+        }
 
     }
 }
